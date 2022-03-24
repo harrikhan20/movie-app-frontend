@@ -10,6 +10,8 @@ function MoviePlot({movies}) {
     const [show, visible] = useState(false)
     const [reviews, setReviews] = useState()
     
+    
+    
 
 
    function deleteMovie(id) {
@@ -19,18 +21,26 @@ function MoviePlot({movies}) {
             result.json().then((resp) =>{
                 console.warn(resp)
                 
+                
             })
         })
         window.location.reload();
       
      }
 
+    function showReviews() {
+          fetch(`http://localhost:9393/reviews`)
+           .then(res => res.json())
+          .then(data => setReviews(data))    
+          console.log(reviews)
+            
+     }
 
-     useEffect(() => {
-        fetch('http://localhost:9393/reviews')
-        .then(res => res.json())
-        .then(data => setReviews(data))
-      }, [])
+     
+         //function handleClick(){
+       //      return (reviews)
+       //  }    
+
     
 
     return (
@@ -47,13 +57,21 @@ function MoviePlot({movies}) {
                  <br></br>
                 <p>Movie Length: {movies.movie_length} min</p> 
                 <br/>
+                <p>reviews{}</p>
+                
+                
                 
              </h5>:false
+             
             }
 
             
 
-           <button onClick={()=> (reviews)} >Movie Reviews</button>
+            
+            
+            
+
+           <button  onClick={()=> showReviews(reviews)} >Movie Reviews</button>
             <button onClick={()=> visible(true)}>View Specs</button>
             <button onClick={()=> visible(false)}>Hide Specs</button>
             <button onClick={() => deleteMovie(movies.id)}>Delete Movie</button>
