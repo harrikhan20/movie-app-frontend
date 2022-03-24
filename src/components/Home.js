@@ -1,11 +1,22 @@
 import React from 'react';
 import MovieSummary from './MoviePlot';
 import { Link } from 'react-router-dom';
-import { useState } from 'react/cjs/react.development';
+import { useState, useEffect } from 'react';
 import MoviePlot from './MoviePlot';
 
 
- function Home({movies}) {
+ function Home() {
+
+    const [movies, setMovies] = useState([]);
+
+
+    
+    
+    useEffect(() => {
+      fetch('http://localhost:9393/movies')
+      .then(res => res.json())
+      .then(data => setMovies(data))
+    }, [])
 
 
 const mappedMovies = movies.map(movies =>  <MoviePlot key={movies.id} movies={movies} plot={movies.plot} rentLink="Thank You For your" />)

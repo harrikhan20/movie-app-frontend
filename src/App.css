@@ -1,15 +1,18 @@
 .App {
   text-align: center;
+  background-color: antiquewhite;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  background-color: antiquewhite;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+ 
   }
 }
 
@@ -22,6 +25,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
 
 .App-link {

@@ -12,35 +12,6 @@ import RentLinkForm from './components/RentLinkForm';
 
 function App() {
 
-const [movies, setMovies] = useState([]);
-
-
-const history = useHistory()
-
-useEffect(() => {
-  fetch('http://127.0.0.1:9393/movies')
-  .then(res => res.json())
-  .then(data => setMovies(data))
-}, [])
-
-
-
-function addMovie(newMovie) {
-  fetch('http://localhost:3000/movies', {
-    method: 'POST', 
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newMovie) 
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-    setMovies([...movies, data])
-    history.push('/')
-  })
-  
-}
-
-
   return (
     <div className="App">
       <Router>
@@ -57,10 +28,10 @@ function addMovie(newMovie) {
 
         </Route>
           <Route exact path="/home">
-            <Home movies={movies} title={movies.title}/>
+            <Home  />
           </Route>
           <Route exact path = "/movies/new">
-            <AddMovieForm addMovie={addMovie}/>
+            <AddMovieForm  />
           </Route>
           <Route exact path = "/movies/rent">
             <RentLinkForm/>
