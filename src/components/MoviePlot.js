@@ -37,9 +37,7 @@ function MoviePlot({movies}) {
      }
 
      
-         //function handleClick(){
-       //      return (reviews)
-       //  }    
+         
 
     
 
@@ -57,7 +55,7 @@ function MoviePlot({movies}) {
                  <br></br>
                 <p>Movie Length: {movies.movie_length} min</p> 
                 <br/>
-                <p>reviews{}</p>
+                
                 
                 
                 
@@ -65,16 +63,17 @@ function MoviePlot({movies}) {
              
             }
 
-            
-
+           
             
             
             
 
            <button  onClick={()=> showReviews(reviews)} >Movie Reviews</button>
+           <Link to="/reviews/new">Create A New Review</Link>
             <button onClick={()=> visible(true)}>View Specs</button>
             <button onClick={()=> visible(false)}>Hide Specs</button>
             <button onClick={() => deleteMovie(movies.id)}>Delete Movie</button>
+            
             <Link to="/movies/rent"> Download This Movie </Link>
             
            

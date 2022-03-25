@@ -8,6 +8,7 @@ import AddMovieForm from './components/AddMovieForm';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import About from './components/About';
 import RentLinkForm from './components/RentLinkForm';
+import AddReviewForm from './components/AddReviewForm';
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path = "/movies/rent">
             <RentLinkForm/>
+          </Route>
+          <Route exact path = "/reviews/new">
+            <AddReviewForm/>
           </Route>
 
           
