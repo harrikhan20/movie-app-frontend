@@ -8,7 +8,7 @@ import MoviePlot from './MoviePlot';
  function Home() {
 
     const [movies, setMovies] = useState([]);
-    const[reviews, setReviews] = useState([]);
+    
     
 
 
@@ -21,24 +21,22 @@ import MoviePlot from './MoviePlot';
       
     }, [])
 
-    useEffect(() => {
-        fetch('http://localhost:9393/reviews')
-        .then(res => res.json())
-        .then(data => setReviews(data))
-        
-      }, [])
-
-    
+      
     
 
 const mappedMovies = movies.map(movies =>  <MoviePlot key={movies.id} movies={movies} plot={movies.plot} rentLink="Thank You For your" />)
-const mappedReviews = reviews.map(reviews =>  <MoviePlot key={reviews.id} reviews={reviews.text} rating={reviews.rating} />)
+
 
 
 
 
 
     return (
+        
+        <div>
+
+            
+
         <div id="">
             <h1>Please Choose The Movie You Want To Order</h1>
 
@@ -52,6 +50,10 @@ const mappedReviews = reviews.map(reviews =>  <MoviePlot key={reviews.id} review
             <Link to='/movies/new'>Add A Movie For Others To See</Link>
 
             
+        </div>
+
+        
+
         </div>
         
     )

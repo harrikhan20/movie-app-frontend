@@ -1,6 +1,6 @@
 import { getMouseEventOptions } from '@testing-library/user-event/dist/utils';
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 
@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 
 function MoviePlot({movies}) {
     const [show, visible] = useState(false)
-    const [reviews, setReviews] = useState()
+    const [reviewsView, setReviewsView] = useState(false)
+    const history = useHistory()
     
     
     
@@ -17,31 +18,15 @@ function MoviePlot({movies}) {
    function deleteMovie(id) {
         fetch(`http://localhost:9393/movies/${id}`, {
             method: 'DELETE'
-        }). then((result) => {
-            result.json().then((resp) =>{
-                console.warn(resp)
-                
-                
-            })
         })
-        window.location.reload();
-      
+        .then(() => {
+         history.push("/")   
+            })
      }
 
-    function showReviews() {
-          fetch(`http://localhost:9393/reviews`)
-           .then(res => res.json())
-          .then(data => setReviews(data))    
-          console.log(reviews)
-            
-     }
-
-     
-         
-
-    
-
+ 
     return (
+        
         <div id="">
             <h2>{movies.title}</h2>
             {
@@ -55,28 +40,20 @@ function MoviePlot({movies}) {
                  <br></br>
                 <p>Movie Length: {movies.movie_length} min</p> 
                 <br/>
-                
-                
-                
-                
+                 
              </h5>:false
              
             }
 
-           
-            
-            
-            
-
-           <button  onClick={()=> showReviews(reviews)} >Movie Reviews</button>
+           <button  onClick={()=> setReviewsView(!reviewsView)} >Movie Reviews</button>
            <Link to="/reviews/new">Create A New Review</Link>
             <button onClick={()=> visible(true)}>View Specs</button>
             <button onClick={()=> visible(false)}>Hide Specs</button>
             <button onClick={() => deleteMovie(movies.id)}>Delete Movie</button>
-            
+            {reviewsView ? movies.reviews.map(reviews => <p><span>{reviews.text}</span><br/><span>Rating: {reviews.rating}</span></p>): null}
             <Link to="/movies/rent"> Download This Movie </Link>
-            
-           
+
+
             
         </div>
     )
