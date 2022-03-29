@@ -24,7 +24,7 @@ import MoviePlot from './MoviePlot';
       
     
 
-const mappedMovies = movies.map(movies =>  <MoviePlot key={movies.id} movies={movies} plot={movies.plot} rentLink="Thank You For your" />)
+const mappedMovies = movies.map(movies =>  <MoviePlot key={movies.id} movies={movies} plot={movies.plot} />)
 
 
 
