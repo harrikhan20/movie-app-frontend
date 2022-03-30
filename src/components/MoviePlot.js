@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 
 
-function MoviePlot({movies}) {
+function MoviePlot({movies, reviews}) {
     const [show, visible] = useState(false)
     const [reviewsView, setReviewsView] = useState(false)
     const history = useHistory()
@@ -23,6 +23,8 @@ function MoviePlot({movies}) {
          history.push("/")   
             })
      }
+
+   
 
  
     return (
